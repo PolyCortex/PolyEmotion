@@ -1,2 +1,5 @@
 *.suo
 *.cache
+/MusicPlayerGUI/MusicPlayerGUI/obj/Debug/AxInterop.WMPLib.dll
+/MusicPlayerGUI/MusicPlayerGUI/obj/Debug/build.force
+/MusicPlayerGUI/MusicPlayerGUI/obj/Debug/Interop.WMPLib.dll
