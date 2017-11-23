@@ -1,3 +1,0 @@
-[submodule "Libraries/OpenBCI_Python"]
-	path = Libraries/OpenBCI_Python
-	url = https://github.com/OpenBCI/OpenBCI_Python.git
