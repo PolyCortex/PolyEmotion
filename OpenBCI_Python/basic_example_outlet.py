@@ -26,6 +26,10 @@ while True:
     outlet.push_sample(mysample)
     
     i += 1
+    
+
+#%% TEST fft ploting  TODO: (ALEX) 
+
 
 
 
