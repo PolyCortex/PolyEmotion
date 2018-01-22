@@ -5,3 +5,6 @@
 /MusicPlayerGUI/MusicPlayerGUI/obj/Debug/Interop.WMPLib.dll
 /MusicPlayerGUI/MusicPlayerGUI/obj/Debug/MusicPlayerGUI.csproj.FileListAbsolute.txt
 /MusicPlayerGUI/MusicPlayerGUI/bin/Debug
+*.user
+bin
+obj
