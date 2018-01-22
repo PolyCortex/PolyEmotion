@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace MusicPlayerGUI
 {
-    public partial class MusicPlayerGUI : Form
+    public partial class MusicPlayerMainView : Form
     {
-        public MusicPlayerGUI()
+        public MusicPlayerMainView()
         {
             InitializeComponent();
         }
