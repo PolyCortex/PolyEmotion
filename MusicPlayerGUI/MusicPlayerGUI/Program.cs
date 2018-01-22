@@ -15,7 +15,11 @@ namespace MusicPlayerGUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< Updated upstream
             Application.Run(new MusicPlayerMainView());
+=======
+            Application.Run(new Form1());
+>>>>>>> Stashed changes
         }
     }
 }
