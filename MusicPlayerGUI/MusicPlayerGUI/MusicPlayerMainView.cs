@@ -15,11 +15,12 @@ namespace MusicPlayerGUI
         public MusicPlayerMainView()
         {
             InitializeComponent();
-            getSongs();                    
+            getSongs();
         }
 
         private void getSongs()
         {
+
             string[] files = System.IO.Directory.GetFiles(currentDirectory);
             foreach (string file in files)
             {
@@ -28,6 +29,7 @@ namespace MusicPlayerGUI
         }
         private void btnUpdatePlaylist_Click(object sender, EventArgs e)
         {
+            songPlaylist.Items.Clear();
             getSongs();
         }
 
