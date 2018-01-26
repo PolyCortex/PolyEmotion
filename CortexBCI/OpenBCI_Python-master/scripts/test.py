@@ -15,7 +15,7 @@ def printData(sample):
 
 
 if __name__ == '__main__':
-	port = '/dev/tty.OpenBCI-DN008VTF'
+	port = 'COM4'
 	#port = '/dev/tty.OpenBCI-DN0096XA'
 	baud = 115200
 	logging.basicConfig(filename="test.log",format='%(asctime)s - %(levelname)s : %(message)s',level=logging.DEBUG)
@@ -24,5 +24,5 @@ if __name__ == '__main__':
 	print("Board Instantiated")
 	board.ser.write('v')
 	time.sleep(10)
-	#board.start_streaming(printData)
-	board.print_bytes_in()
+	board.start_streaming(printData)
+	#board.print_bytes_in()
