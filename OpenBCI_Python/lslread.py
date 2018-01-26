@@ -71,7 +71,7 @@ def record_to_CSV_experiment_data(
             plt.plot()
     # Save as csv
     np.savetxt('{SAVE_FILE_NAME}.csv'.format(SAVE_FILE_NAME=SAVE_FILE_NAME),
-               timestamps_and_eeg.T, delimiter=',' )
+               timestamps_and_eeg.T, delimiter=',' )                           # TODO: use pickle.dump instead
 
     return timestamps, all_eeg
 
@@ -107,126 +107,7 @@ plt.show()
 
 
 
-#%% PLOTING the EEG data
-# Graph the data
-from pyqtgraph.Qt import QtGui, QtCore
-import numpy as np
-import pyqtgraph as pg
-from pyqtgraph.ptime import time
-app = QtGui.QApplication([])
-# For the EEG feed
-from pylsl import StreamInlet, resolve_stream
-import numpy as np
-from collections import deque
-import time
 
-# inlet variables
-streams = resolve_stream('type', 'EEG')
-# create a new inlet to read from the stream
-inlet = StreamInlet(streams[0])
-
-win = pg.GraphicsWindow()
-win.setWindowTitle('Visualisation of OPENBCI signals widget')
-win.useOpenGL()
-# =============================================================================
-# Create 8 scrolling plot at the left of the screen to display all channels
-# =============================================================================
-# Initialize the differents array required to show all channels
-N_DATA = 500
-N_SIGNALS = 8
-p = [[]] * N_SIGNALS
-data = [None] * N_SIGNALS
-curve = [None] * N_SIGNALS
-update_func = []
-# Create all the  8 plots
-for i in range(N_SIGNALS):
-    p[i] = win.addPlot(row=i, col=0)
-    # add axis labels
-    p[i].setLabel('left', 'ch {i}'.format(i=i))
-    if i == 0:
-        p[i].setTitle("""Electrical amplitude of the signal for the 8 channels
-                       of the OPENBCI""")
-    if i == 7:
-        p[i].setLabel('bottom', 'Time', 's')
-    p[i].showGrid(x=True, y=True, alpha=0.3)
-
-    data[i] = deque(np.zeros(N_DATA), maxlen=N_DATA)
-    curve[i] = p[i].plot(data[i])
-    def update(sample, timestamp, i):
-        global curve
-        p[i].setLabel('right',
-                      '{mean_ampl:.2f} µVrms'.format(mean_ampl=np.mean(data[i])))      # TODO: verifier l'unité
-        data[i].append(sample)
-        curve[i].setData(data[i])
-    # Use the property of first member citizen of functions
-    update_func.append(update)
-
-# =============================================================================
-# Create a frequency plot on the side
-# =============================================================================
-import scipy.fftpack
-p_freq = win.addPlot(rowspan=4, row=4, col=1)
-p_freq.setLabel('bottom', 'Frequency', 'hz')
-p_freq.setTitle('FFT for all channels')
-p_freq.showGrid(x=True, y=True, alpha=0.5)
-data_freq = deque(np.zeros(N_DATA), maxlen=N_DATA)
-curve_freq = p_freq.plot(data_freq)
-def update_freq_plot(sample, timestamp):
-    global curve_freq
-    data_freq.append(sample)
-    yf = scipy.fftpack.fft(data_freq)
-    # Set x axis
-    xf = np.linspace(0.0, 250.0, len(data_freq)//2)
-    p_freq.setRange(xRange=xf)
-    curve_freq.setData(2.0/len(data_freq) * np.abs(yf[:len(data_freq)//2]))
-
-# =============================================================================
-# Add a dock with some button widgets
-# =============================================================================
-"""
-from pyqtgraph.Qt import QtCore, QtGui
-import pyqtgraph.console
-from pyqtgraph.dockarea import *
-
-d1 = Dock("Dock1", size=(1, 1))     ## give this dock the minimum possible size
-area.addDock(d1, 'right')
-d1 = Dock("Dock6 (tabbed) - Plot", size=(500,200))
-w1 = pg.LayoutWidget()
-label = QtGui.QLabel(' -- DockArea Example --')
-w1.addWidget(label, row=0, col=1)
-d1.addWidget(w1)
-"""
-
-# =============================================================================
-#  UPDATE the graph for the 8 signals (one for each signal channel)
-# =============================================================================
-num_itt = 0
-def update():
-    global inlet, num_itt
-    # Using chunk to avoid laging behind time by having a displaying rate
-    # lower than the sampling rate
-    DISPLAY_RATE = 5
-    samples, timestamp = inlet.pull_sample()
-    if timestamp and num_itt % DISPLAY_RATE == 0: # plot every 5 samples                  # ????: (ALEX) is it better to pull in chunk
-        num_itt = 0                                                            # Like that we are sure that we are never lagging behind (but the jump between the samples is variable)
-        # Update the 8 signal channels                                         # Or should there be a variable sample rate base on the lagg
-        for i in range(N_SIGNALS):                                             # or use the downsampling parameter
-            update_func[i](samples[i], timestamp, i)
-        # Update the frequency plot
-        if num_itt % 2 * DISPLAY_RATE == 0:
-            update_freq_plot(samples[2], timestamp)
-    num_itt += 1
-
-
-timer = pg.QtCore.QTimer()
-timer.timeout.connect(update)
-timer.start(0)
-
-# Start Qt event loop unless running in interactive mode or using pyside.
-if __name__ == '__main__':
-    import sys
-    if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
-        QtGui.QApplication.instance().exec_()
 
 
 

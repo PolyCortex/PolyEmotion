@@ -189,6 +189,7 @@ class OpenBCIBoard(object):
       else:
         for call in callback:
           call(sample)
+#        return sample # (ALEXM) - use this line instead of the previous line
       
       if(lapse > 0 and timeit.default_timer() - start_time > lapse):
         self.stop();

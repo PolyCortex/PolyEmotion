@@ -16,14 +16,14 @@ while True:
 
     time.sleep(0.004)
 
-    sinus1 = sin(i/rep_time * 10 * pi)
-    sinus2 = sin(i/rep_time * 20 * pi)
+    sinus1 = sin(10 * 2 * pi * i/rep_time)
+    sinus2 = sin(20 * 2 * pi * i/rep_time)
     if 239 < i < 249:
-        mysample = [sinus2, sinus1+sinus2, 3, 4,
+        mysample = [sinus2, sinus1+2 * sinus2, 3, 4,
                     2, 2, 2, 2]
     else:
-        mysample = [sinus2, sinus1+sinus2, sinus1, rand(),
-            sinus1, sinus1, rand(), sinus1]
+        mysample = [sinus2, sinus1 + sinus2, sinus1, rand(),
+                    sinus1, sinus1, rand(), sinus1]
     outlet.push_sample(mysample)
 
     i += 1

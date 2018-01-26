@@ -262,29 +262,29 @@ class OpenBCIWifi(object):
         if not self.streaming:
             self.init_streaming()
 
-        # while self.streaming:
-        #     # should the board get disconnected and we could not wait for notification anymore, a reco should be attempted through timeout mechanism
-        #     try:
-        #         # at most we will get one sample per packet
-        #         self.waitForNotifications(1. / self.getSampleRate())
-        #     except Exception as e:
-        #         print("Something went wrong while waiting for a new sample: " + str(e))
-        #     # retrieve current samples on the stack
-        #     samples = self.delegate.getSamples()
-        #     self.packets_dropped = self.delegate.getMaxPacketsDropped()
-        #     if samples:
-        #         self.time_last_packet = timeit.default_timer()
-        #         for call in callback:
-        #             for sample in samples:
-        #                 call(sample)
-        #
-        #     if (lapse > 0 and timeit.default_timer() - start_time > lapse):
-        #         self.stop();
-        #     if self.log:
-        #         self.log_packet_count = self.log_packet_count + 1;
-        #
-        #     # Checking connection -- timeout and packets dropped
-        #     self.check_connection()
+        while self.streaming:
+             # should the board get disconnected and we could not wait for notification anymore, a reco should be attempted through timeout mechanism
+             try:
+                 # at most we will get one sample per packet
+                 self.waitForNotifications(1. / self.getSampleRate())
+             except Exception as e:
+                 print("Something went wrong while waiting for a new sample: " + str(e))
+             # retrieve current samples on the stack
+             samples = self.delegate.getSamples()
+             self.packets_dropped = self.delegate.getMaxPacketsDropped()
+             if samples:
+                 self.time_last_packet = timeit.default_timer()
+                 for call in callback:
+                     for sample in samples:
+                         call(sample)
+        
+             if (lapse > 0 and timeit.default_timer() - start_time > lapse):
+                 self.stop();
+             if self.log:
+                 self.log_packet_count = self.log_packet_count + 1;
+        
+             # Checking connection -- timeout and packets dropped
+             self.check_connection()
 
     def test_signal(self, signal):
         """ Enable / disable test signal """

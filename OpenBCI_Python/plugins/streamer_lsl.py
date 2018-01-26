@@ -6,7 +6,8 @@ import sys; sys.path.append('lib') # help python find pylsl relative to this exa
 from pylsl import StreamInfo, StreamOutlet
 import plugin_interface as plugintypes
 
-# Use LSL protocol to broadcast data using one stream for EEG, one stream for AUX, one last for impedance testing (on supported board, if enabled)
+# Use LSL protocol to broadcast data using one stream for EEG, one stream for
+# AUX, one last for impedance testing (on supported board, if enabled)
 class StreamerLSL(plugintypes.IPluginExtended):
 	# From IPlugin
 	def activate(self):
