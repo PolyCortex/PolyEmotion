@@ -18,7 +18,8 @@ namespace MusicPlayerGUI
 
         private void btnUpdatePlaylist_Click(object sender, EventArgs e)
         {
-
+            
         }
+        
     }
 }
