@@ -24,9 +24,8 @@ from pyqtgraph.Qt import QtGui, QtCore
 from collections import deque
 from random import random
 from time import time
-from scipy.signal import butter, lfilter
 
-# lire les données du fichier
+# lire les donnees du fichier
 eeg_data = []
 with open('OpenBCI-RAW-2018-02-01_19-15-17.txt') as f:
     for i, line in enumerate(f):
@@ -34,8 +33,9 @@ with open('OpenBCI-RAW-2018-02-01_19-15-17.txt') as f:
             line = line.split(',')
             ch2 = float(line[2])
             eeg_data.append(ch2)
-#
-# # filtrer le signal
+
+
+# filtrer le signal
 # def butter_lowpass(cutOff, fs, order=5):
 #     nyq = 0.5 * fs
 #     normalCutoff = cutOff / nyq
