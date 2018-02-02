@@ -7,5 +7,4 @@
 /MusicPlayerGUI/MusicPlayerGUI/bin/Debug/MusicPlayerGUI.pdb
 /MusicPlayerGUI/MusicPlayerGUI/bin/Debug/MusicPlayerGUI.vshost.exe
 *.user
-obj
-/MusicPlayerGUI/.vs/*
+/MusicPlayerGUI/.vs/

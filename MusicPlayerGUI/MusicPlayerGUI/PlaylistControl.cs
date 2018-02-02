@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MusicPlayerGUI
 {
-    public partial class MusicPlayerMainView : Form
+    public partial class PlaylistControl : UserControl
     {
         private string currentDirectory = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Songs");
 
-        public MusicPlayerMainView()
+        public PlaylistControl()
         {
             InitializeComponent();
             getSongs();
@@ -37,11 +38,6 @@ namespace MusicPlayerGUI
         {
             mediaPlayer.URL = System.IO.Path.Combine(currentDirectory, songPlaylist.SelectedItem.ToString());
             mediaPlayer.Ctlcontrols.play();
-        }
-
-        private void MusicPlayerMainView_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
