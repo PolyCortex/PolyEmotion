@@ -33,7 +33,7 @@ plt = pg.plot()
 bufferSize = 500
 data = deque(np.zeros(bufferSize), maxlen=bufferSize)
 curve = plt.plot()
-plt.setRange(xRange=[0, bufferSize], yRange=[-60000, -50000])
+plt.setRange(xRange=[0, bufferSize], yRange=[-60000, -53000])
 i = 0
 sample_no = 0
 
@@ -50,7 +50,7 @@ def update():
 
 timer = pg.QtCore.QTimer()
 timer.timeout.connect(update)
-timer.start(10)
+timer.start(4)
 
 if __name__ == '__main__':
     import sys
