@@ -1,9 +1,10 @@
 *.suo
 *.cache
-/MusicPlayerGUI/MusicPlayerGUI/obj/Debug/AxInterop.WMPLib.dll
-/MusicPlayerGUI/MusicPlayerGUI/obj/Debug/build.force
-/MusicPlayerGUI/MusicPlayerGUI/obj/Debug/Interop.WMPLib.dll
-/MusicPlayerGUI/MusicPlayerGUI/obj/Debug/MusicPlayerGUI.csproj.FileListAbsolute.txt
-/MusicPlayerGUI/MusicPlayerGUI/bin/Debug
+/MusicPlayerGUI/MusicPlayerGUI/obj/Debug/
+/MusicPlayerGUI/MusicPlayerGUI/bin/Debug/AxInterop.WMPLib.dll
+/MusicPlayerGUI/MusicPlayerGUI/bin/Debug/Interop.WMPLib.dll
+/MusicPlayerGUI/MusicPlayerGUI/bin/Debug/MusicPlayerGUI.exe
+/MusicPlayerGUI/MusicPlayerGUI/bin/Debug/MusicPlayerGUI.pdb
+/MusicPlayerGUI/MusicPlayerGUI/bin/Debug/MusicPlayerGUI.vshost.exe
 *.user
-obj
+/MusicPlayerGUI/.vs/
