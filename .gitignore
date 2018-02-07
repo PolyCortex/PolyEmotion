@@ -9,3 +9,4 @@
 *.user
 /MusicPlayerGUI/.vs/
 MusicPlayerGUI/MusicPlayerGUI/obj/
+*.manifest
