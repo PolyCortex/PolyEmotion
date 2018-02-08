@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.playlistControl1 = new MusicPlayerGUI.PlaylistControl();
+            this.graphControl1 = new MusicPlayerGUI.GraphControl();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -41,18 +41,19 @@
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // playlistControl1
+            // graphControl1
             // 
-            this.playlistControl1.Location = new System.Drawing.Point(100, 104);
-            this.playlistControl1.Name = "playlistControl1";
-            this.playlistControl1.Size = new System.Drawing.Size(881, 383);
-            this.playlistControl1.TabIndex = 11;
+            this.graphControl1.Location = new System.Drawing.Point(44, 26);
+            this.graphControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.graphControl1.Name = "graphControl1";
+            this.graphControl1.Size = new System.Drawing.Size(779, 371);
+            this.graphControl1.TabIndex = 11;
             // 
             // MainView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1452, 845);
-            this.Controls.Add(this.playlistControl1);
+            this.Controls.Add(this.graphControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainView";
@@ -66,5 +67,6 @@
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
         private PlaylistControl playlistControl1;
+        private GraphControl graphControl1;
     }
 }

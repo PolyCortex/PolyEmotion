@@ -32,10 +32,11 @@
             // 
             // GraphControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "GraphControl";
-            this.Size = new System.Drawing.Size(1169, 580);
+            this.Size = new System.Drawing.Size(779, 371);
             this.ResumeLayout(false);
 
         }
