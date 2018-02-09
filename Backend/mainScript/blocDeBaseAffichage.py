@@ -3,27 +3,10 @@ import numpy as np
 from pyqtgraph.Qt import QtGui, QtCore
 from collections import deque
 from random import random
-from time import time
+import time
 from threading import Thread
 from Queue import Queue
-
-# Local modules
-#import feedparser
-
-
-
-
-
-
-def dataImport(fichier, queue):
-    with open(fichier) as f:
-        for i, line in enumerate(f):
-            if 5 < i:
-                line = line.split(',')
-                ch2 = float(line[2])
-                queue.put(ch2,timeout=0.05)
-                queue.task_done()
-                
+import dataFiller
 
                 
 
@@ -43,9 +26,10 @@ def dataImport(fichier, queue):
 # eeg_data_filter = butter_lowpass_filter(data=eeg_data, cutOff=60, order=4)
 
 
-plt = pg.plot()
+
 bufferSize = 500
 data = deque(np.zeros(bufferSize), maxlen=bufferSize)
+plt = pg.plot()
 plt.setRange(xRange=[0, bufferSize], yRange=[-60000, -53000])
 curve = plt.plot()
 
@@ -59,22 +43,24 @@ def update():
 
 timer = pg.QtCore.QTimer()
 
-def run():
-    timer.timeout.connect(update)
-    timer.start(4)
+# def run():
+    # timer.timeout.connect(update)
+    # timer.start(4)
 
 if __name__ == '__main__':
     import sys
-
     fichier = 'donne1.txt'
     queueSize = 500
     sample_no = 0
-
     dataQueue = Queue(queueSize)
+    worker = dataFiller.fillerWorker(dataQueue, fichier)
 
-    dataImport(fichier, dataQueue)
+    worker.start()
+    print("on attend un peu..")
+    time.sleep(2)
+    worker.join()
 
-    print(dataQueue.get())
+
     
     # if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
     #     QtGui.QApplication.instance().exec_()

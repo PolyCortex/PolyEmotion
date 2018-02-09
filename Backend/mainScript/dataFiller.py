@@ -17,7 +17,7 @@ class fillerWorker(threading.Thread):
         super(fillerWorker, self).__init__()
         self.dataQueue = dataQueue        
         self.stoprequest = threading.Event()
-        with open(fichier) as self.fichier
+        self.fichier = open(fichier)
 
     def run(self):
         # As long as we weren't asked to stop, try to take new tasks from the
@@ -25,17 +25,20 @@ class fillerWorker(threading.Thread):
         # cycles are wasted while waiting.
         # Also, 'get' is given a timeout, so stoprequest is always checked,
         # even if there's nothing in the queue.
-        while not self.stoprequest.isSet():
-            try:
-                for i, line in enumerate(self.fichier):
-                    if i > 5:
-                        line = line.split(',')
-                        ch2 = float(line[2])
-                        queue.put(ch2,timeout=0.05)
-                        queue.task_done()
-            except Queue.Empty:
-                continue
+   
+            for i, line in enumerate(self.fichier):
+                if not self.stoprequest.isSet():
+                    try:
+                        if i > 5:
+                            line = line.split(',')
+                            ch2 = float(line[2])
+                            self.dataQueue.put(ch2,timeout=0.05)
+                            self.dataQueue.task_done()
+                            print("je work !")
+                    except Queue.Empty:
+                        continue
 
     def join(self, timeout=None):
         self.stoprequest.set()
+        print("je work plus !")
         super(fillerWorker, self).join(timeout)
