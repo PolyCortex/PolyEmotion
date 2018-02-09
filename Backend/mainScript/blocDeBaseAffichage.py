@@ -46,8 +46,9 @@ def dataImport(fichier, queue):
 plt = pg.plot()
 bufferSize = 500
 data = deque(np.zeros(bufferSize), maxlen=bufferSize)
-curve = plt.plot()
 plt.setRange(xRange=[0, bufferSize], yRange=[-60000, -53000])
+curve = plt.plot()
+
 
 
 def update():
@@ -56,10 +57,11 @@ def update():
     curve.setData(data)
     sample_no += 1
 
-
 timer = pg.QtCore.QTimer()
-timer.timeout.connect(update)
-timer.start(4)
+
+def run():
+    timer.timeout.connect(update)
+    timer.start(4)
 
 if __name__ == '__main__':
     import sys
