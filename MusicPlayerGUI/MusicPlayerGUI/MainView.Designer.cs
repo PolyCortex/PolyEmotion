@@ -28,12 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.playlistControl1 = new MusicPlayerGUI.PlaylistControl();
             this.SuspendLayout();
+            // 
+            // playlistControl1
+            // 
+            this.playlistControl1.Location = new System.Drawing.Point(24, 11);
+            this.playlistControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.playlistControl1.Name = "playlistControl1";
+            this.playlistControl1.Size = new System.Drawing.Size(700, 563);
+            this.playlistControl1.TabIndex = 0;
             // 
             // MainView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(854, 585);
+            this.Controls.Add(this.playlistControl1);
             this.Name = "MainView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MusicPlayerMainView";
@@ -42,5 +52,7 @@
         }
 
         #endregion
+
+        private PlaylistControl playlistControl1;
     }
 }
