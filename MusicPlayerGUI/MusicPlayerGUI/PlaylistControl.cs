@@ -23,7 +23,7 @@ namespace MusicPlayerGUI
 
         private void getSongs()
         {
-            string[] files = Directory.GetFiles(songsDirectory);
+            string[] files = Directory.GetFiles(songsDirectory, "*.mp3");
             foreach (string file in files)
             {
                 songPlaylist.Items.Add(Path.GetFileName(file));
