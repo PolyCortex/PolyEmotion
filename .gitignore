@@ -10,3 +10,5 @@
 /MusicPlayerGUI/.vs/
 MusicPlayerGUI/MusicPlayerGUI/obj/
 *.manifest
+*.db
+*.ini

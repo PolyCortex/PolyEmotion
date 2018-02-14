@@ -40,8 +40,6 @@ namespace MusicPlayerGUI
             }
 
             songsDirectory = Path.Combine(songsDirectory, "Songs");
-
-            MessageBox.Show(songsDirectory);
         }
 
         private void btnUpdatePlaylist_Click(object sender, EventArgs e)
