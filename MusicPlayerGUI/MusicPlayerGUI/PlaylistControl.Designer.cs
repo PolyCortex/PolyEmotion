@@ -41,10 +41,10 @@
             // 
             // btnUpdatePlaylist
             // 
-            this.btnUpdatePlaylist.Location = new System.Drawing.Point(538, 236);
+            this.btnUpdatePlaylist.Location = new System.Drawing.Point(404, 192);
             this.btnUpdatePlaylist.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdatePlaylist.Name = "btnUpdatePlaylist";
-            this.btnUpdatePlaylist.Size = new System.Drawing.Size(102, 31);
+            this.btnUpdatePlaylist.Size = new System.Drawing.Size(76, 25);
             this.btnUpdatePlaylist.TabIndex = 13;
             this.btnUpdatePlaylist.Text = "Update Playlist";
             this.btnUpdatePlaylist.UseVisualStyleBackColor = true;
@@ -54,12 +54,11 @@
             // 
             this.songPlaylist.FormattingEnabled = true;
             this.songPlaylist.HorizontalScrollbar = true;
-            this.songPlaylist.ItemHeight = 16;
-            this.songPlaylist.Location = new System.Drawing.Point(498, 43);
+            this.songPlaylist.Location = new System.Drawing.Point(374, 35);
             this.songPlaylist.Margin = new System.Windows.Forms.Padding(2);
             this.songPlaylist.Name = "songPlaylist";
             this.songPlaylist.ScrollAlwaysVisible = true;
-            this.songPlaylist.Size = new System.Drawing.Size(166, 164);
+            this.songPlaylist.Size = new System.Drawing.Size(126, 134);
             this.songPlaylist.TabIndex = 11;
             this.songPlaylist.SelectedIndexChanged += new System.EventHandler(this.songPlaylist_SelectedIndexChanged);
             // 
@@ -70,45 +69,48 @@
             this.mediaPlayer.Margin = new System.Windows.Forms.Padding(2);
             this.mediaPlayer.Name = "mediaPlayer";
             this.mediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaPlayer.OcxState")));
-            this.mediaPlayer.Size = new System.Drawing.Size(419, 296);
+            this.mediaPlayer.Size = new System.Drawing.Size(419, 45); 
             this.mediaPlayer.TabIndex = 10;
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(20, 18);
+            this.tabControl1.Location = new System.Drawing.Point(15, 15);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(423, 202);
+            this.tabControl1.Size = new System.Drawing.Size(317, 164);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 16;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             // 
             // tabPage1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(415, 173);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Size = new System.Drawing.Size(309, 138);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "TAB1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(415, 173);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Size = new System.Drawing.Size(309, 138);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // PlaylistControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnUpdatePlaylist);
             this.Controls.Add(this.songPlaylist);
@@ -116,7 +118,7 @@
             this.Controls.Add(this.mediaPlayer);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PlaylistControl";
-            this.Size = new System.Drawing.Size(689, 564);
+            this.Size = new System.Drawing.Size(517, 458);
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
