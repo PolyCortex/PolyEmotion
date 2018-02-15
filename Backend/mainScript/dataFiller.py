@@ -28,13 +28,12 @@ class fillerWorker(threading.Thread):
    
             for i, line in enumerate(self.fichier):
                 if not self.stoprequest.isSet():
-                    try:
-                        if i > 5:
-                            line = line.split(',')
-                            ch2 = float(line[2])
-                            self.dataQueue.put(ch2,timeout=0.05)
-                            self.dataQueue.task_done()
-                            print("je work !")
+                    try:                        
+                        line = line.split(',')
+                        ch2 = float(line[2])
+                        self.dataQueue.put(ch2,timeout=0.05)
+                        self.dataQueue.task_done()
+                        print "je work ! : ",ch2
                     except Queue.Empty:
                         continue
 
