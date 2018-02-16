@@ -1,7 +1,13 @@
 import time
-import threading, Queue
+import threading
+import pyqtgraph as pg
+import multiprocessing 
+import numpy as np
+from pyqtgraph.Qt import QtGui, QtCore
+from Queue import Queue
+import sys
 
-class WorkerData(threading.Thread):
+class plotterWorker(multiprocessing.Process):
     """ A worker thread that takes directory names from a queue, finds all
         files in them recursively and reports the result.
 
@@ -12,34 +18,43 @@ class WorkerData(threading.Thread):
         Each tuple is (thread name, dirname, [list of files]).
 
         Ask the thread to stop by calling its join() method.
-    """
+    # """
     def __init__(self, dataQueue):
-        super(WorkerThread, self).__init__()
-        self.dataQueue = dataQueue        
-        self.stoprequest = threading.Event()
+        super(plotterWorker, self).__init__()
+        self.dataQueue = dataQueue       
+  
 
     def run(self):
-        # As long as we weren't asked to stop, try to take new tasks from the
-        # queue. The tasks are taken with a blocking 'get', so no CPU
-        # cycles are wasted while waiting.
-        # Also, 'get' is given a timeout, so stoprequest is always checked,
-        # even if there's nothing in the queue.
-        while not self.stoprequest.isSet():
-            try:
-                dirname = self.dir_q.get(True, 0.05)
-                filenames = list(self._files_in_dir(dirname))
-                self.result_q.put((self.name, dirname, filenames))
-            except Queue.Empty:
-                continue
+        app2 = QtGui.QApplication([])
+
+        win2 = pg.GraphicsWindow(title="Basic plotting examples")
+        win2.resize(1000,600)
+        win2.setWindowTitle('pyqtgraph example: Plotting')
+        p2 = win2.addPlot(title="Updating plot")
+        curve = p2.plot(pen='y')
+
+        x_np = []
+        y_np = []
+
+        def updateInProc(curve,q,x,y):
+            item = q.get()
+            x.append(item[0])
+            y.append(item[1])
+            curve.setData(x,y)
+
+        timer = QtCore.QTimer()
+        timer.timeout.connect(lambda: updateInProc(curve,self.dataQueue,x_np,y_np))
+        timer.start(50)
+
+        QtGui.QApplication.instance().exec_()
+        
+       
+    def updateInProc(curve,q,x,y):
+            item = q.get()
+            x.append(item[0])
+            y.append(item[1])
+            
+            self.curve.setData(x,y)    
 
     def join(self, timeout=None):
-        self.stoprequest.set()
-        super(WorkerThread, self).join(timeout)
-
-    def _files_in_dir(self, dirname):
-        """ Given a directory name, yields the names of all files (not dirs)
-            contained in this directory and its sub-directories.
-        """
-        for path, dirs, files in os.walk(dirname):
-            for file in files:
-                yield os.path.join(path, file)
+        super(plotterWorker, self).join(timeout)

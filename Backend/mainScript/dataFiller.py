@@ -1,7 +1,8 @@
 import time
-import threading, Queue
+import multiprocessing 
+from collections import deque
 
-class fillerWorker(threading.Thread):
+class fillerWorker(multiprocessing.Process):
     """ A worker thread that takes directory names from a queue, finds all
         files in them recursively and reports the result.
 
@@ -15,9 +16,8 @@ class fillerWorker(threading.Thread):
     """
     def __init__(self, dataQueue, fichier):
         super(fillerWorker, self).__init__()
-        self.dataQueue = dataQueue        
-        self.stoprequest = threading.Event()
-        self.fichier = open(fichier)
+        self.dataQueue    = dataQueue        
+        self.fichier     = open(fichier)
 
     def run(self):
         # As long as we weren't asked to stop, try to take new tasks from the
@@ -27,17 +27,14 @@ class fillerWorker(threading.Thread):
         # even if there's nothing in the queue.
    
             for i, line in enumerate(self.fichier):
-                if not self.stoprequest.isSet():
-                    try:                        
-                        line = line.split(',')
-                        ch2 = float(line[2])
-                        self.dataQueue.put(ch2,timeout=0.05)
-                        self.dataQueue.task_done()
-                        print "je work ! : ",ch2
-                    except Queue.Empty:
-                        continue
+                    time.sleep(.1)
+                    line = line.split(',')
+                    ch2 = float(line[2])
+                    ch1 = float(line[0])
+                    
+                    self.dataQueue.put((ch2,ch1), True)
+                    #print "je work ! : ",ch2
+
 
     def join(self, timeout=None):
-        self.stoprequest.set()
-        print("je work plus !")
         super(fillerWorker, self).join(timeout)
