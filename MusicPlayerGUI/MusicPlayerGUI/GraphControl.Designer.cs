@@ -28,19 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.graphSignal1 = new LiveCharts.WinForms.CartesianChart();
             this.SuspendLayout();
+            // 
+            // graphSignal1
+            // 
+            this.graphSignal1.Location = new System.Drawing.Point(52, 31);
+            this.graphSignal1.Name = "graphSignal1";
+            this.graphSignal1.Size = new System.Drawing.Size(732, 467);
+            this.graphSignal1.TabIndex = 0;
+            this.graphSignal1.Text = "cartesianChart1";
             // 
             // GraphControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.graphSignal1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GraphControl";
-            this.Size = new System.Drawing.Size(779, 371);
+            this.Size = new System.Drawing.Size(805, 571);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private LiveCharts.WinForms.CartesianChart graphSignal1;
     }
 }

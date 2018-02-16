@@ -58,9 +58,8 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GraphControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="DataModel.cs" />
+    <Compile Include="GraphControl.cs" />
     <Compile Include="GraphControl.Designer.cs">
       <DependentUpon>GraphControl.cs</DependentUpon>
     </Compile>

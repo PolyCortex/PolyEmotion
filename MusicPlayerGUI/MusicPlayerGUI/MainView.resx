@@ -117,9 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="graphControl1.randomGenerator" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAEAQAAAA1TeXN0ZW0uUmFuZG9tAwAAAAVpbmV4dAZpbmV4dHAJU2VlZEFy
+        cmF5AAAHCAgIKAAAAAYAAAAJAgAAAA8CAAAAOAAAAAgAAAAA4tCLO7lN12PMQipoKP18TpVDLDjgmoZy
+        loYnLGTjNwKasNgzQAWWCV8upDxWxM0XXLCvPN1LM1M2lN8BM8mdX2IeYytiZ9Upn5dKSVgJvSu6GX06
+        aq5LOUb1zzaVBQp/IYNmB+yyfiJLlNBMb4lsTAOrq2kZKloKx1G3KErYNWyTsbIxFC+yXwkgHAiBGEBD
+        hcglBfos9To2EJcgI55ROKu8zEfEpxsU193keULprmJBsDVtP2utc0AXU0jFH/5UeQkCCDkuVQNAX2ZP
+        F51fSazygi5wU0Mv5/nuaAs=
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>
