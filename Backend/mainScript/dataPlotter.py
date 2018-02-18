@@ -38,13 +38,13 @@ class plotterWorker(multiprocessing.Process):
 
         def updateInProc(curve,q,x,y):
             item = q.get()
-            x.append(item[0])
-            y.append(item[1])
+            x.append(item[1])
+            y.append(item[0])
             curve.setData(x,y)
 
         timer = QtCore.QTimer()
         timer.timeout.connect(lambda: updateInProc(curve,self.dataQueue,x_np,y_np))
-        timer.start(50)
+        timer.start(0.1)
 
         QtGui.QApplication.instance().exec_()
         

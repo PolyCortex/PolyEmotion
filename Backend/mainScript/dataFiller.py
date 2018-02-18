@@ -27,10 +27,10 @@ class fillerWorker(multiprocessing.Process):
         # even if there's nothing in the queue.
    
             for i, line in enumerate(self.fichier):
-                    time.sleep(.1)
+
                     line = line.split(',')
                     ch2 = float(line[2])
-                    ch1 = float(line[0])
+                    ch1 = float(i)
                     
                     self.dataQueue.put((ch2,ch1), True)
                     #print "je work ! : ",ch2

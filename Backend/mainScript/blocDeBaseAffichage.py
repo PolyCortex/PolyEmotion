@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
 
     print("on attend un peu..")
-    time.sleep(5)
+
     pFiller.join()
     pConsumer.join()
     
