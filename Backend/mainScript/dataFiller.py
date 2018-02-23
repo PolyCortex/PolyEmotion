@@ -1,6 +1,7 @@
 import time
 import multiprocessing 
 from collections import deque
+import numpy as np
 
 class fillerWorker(multiprocessing.Process):
     """ A worker thread that takes directory names from a queue, finds all
@@ -27,13 +28,18 @@ class fillerWorker(multiprocessing.Process):
         # even if there's nothing in the queue.
    
             for i, line in enumerate(self.fichier):
-
+                    #on prend ici une ligne de l'input et on le parse en numpy array avec 
+                    #les channels qui nous interesse.
                     line = line.split(',')
-                    ch2 = float(line[2])
-                    ch1 = float(i)
-                    
-                    self.dataQueue.put((ch2,ch1), True)
-                    #print "je work ! : ",ch2
+                    line = [x.strip(' ') for x in line]
+                    line = np.array(line)
+                    line = line[0:8]
+                    line = line.astype(np.float)
+                    line[0] = i%1000
+                    #le true ici peremet de s'assurer que la queue ne reste pas pleine trop longtemps
+                    #il faudrait catch lerreur 
+                    self.dataQueue.put(line, True)
+                   
 
 
     def join(self, timeout=None):
