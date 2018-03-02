@@ -14,7 +14,7 @@ from multiprocessing import Process
 
 if __name__ == '__main__':
     import sys
-    fichier = 'donne1.txt'
+    fichier = './Test_CSV/donne1.txt'
     dataQueue = multiprocessing.Queue()
 
 

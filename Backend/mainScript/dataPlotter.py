@@ -25,54 +25,52 @@ class plotterWorker(multiprocessing.Process):
   
 
     def run(self):
+        self.plotting()
+        
+    def plotting(self):
+
+        CHANNEL_SIZE = 4
         app = QtGui.QApplication([])
 
         win = pg.GraphicsWindow(title="Basic plotting examples")
         win.resize(1000,600)
         win.setWindowTitle('pyqtgraph example: Plotting')
-        p1 = win.addPlot(title="Channel 1", row = 0, col = 0)
-        p2 = win.addPlot(title="Channel 2", row = 1, col = 0)
-        p3 = win.addPlot(title="Channel 2", row = 0, col = 1)
-        p4 = win.addPlot(title="Channel 2", row = 1, col = 1)
-        curve1 = p1.plot(pen='y')
-        curve2 = p2.plot(pen='r')
-        curve3 = p3.plot(pen='g')
-        curve4 = p4.plot(pen='b')
+    
+        curves = []
+        
+        color = ['y', 'r', 'g', 'b']
+        curves = []
+        for i in range(CHANNEL_SIZE):
+            p = win.addPlot(title="Channel" + str(i+1), row=i, col=0)
+            curve = p.plot(pen=color[i])
+            curves.append(curve)    
 
-        curves = [curve1, curve2, curve3, curve4]
+        def updateInProc(curves,q,x,y):
+            items = q.get()
+            idx = int(items[0])
+            x[idx] = items[0]
 
+
+            for i in range(len(y)):
+                y[i][idx]=  items[i+1]
+            
+
+            for i,curve in enumerate(curves):
+                curve.setData(x,y[i])
+            
+        y_np = []
 
         x_np = np.arange(1000)
         # Le 56500 est une valeure moyenne qui est par rapport a notre fichier csv
-        y_np1 = -56500*np.ones(1000)
-        y_np2 = -56500*np.ones(1000)
-        y_np3 = -56500*np.ones(1000)
-        y_np4 = -56500*np.ones(1000)
 
-        y_np = [y_np1, y_np2, y_np3, y_np4]
-    
-
-        def updateInProc(curves,q,x,y):
-            item = q.get()
-            idx = int(item[0])
-            x[idx] = item[0]
-            y[0][idx]=  item[1]
-            y[1][idx]=  item[2]
-            y[2][idx]=  item[3]
-            y[3][idx]=  item[4]
-            for i,curve in enumerate(curves):
-                curve.setData(x,y[i])
-            #curves[0].setData(x,y)
-            #curves[1].setData(x,y)
-        
+        for i in range(CHANNEL_SIZE):
+            y_np.append(-56500*np.ones(1000))
 
         timer = QtCore.QTimer()
         timer.timeout.connect(lambda: updateInProc(curves,self.dataQueue,x_np,y_np))
         timer.start(0.004)
 
         QtGui.QApplication.instance().exec_()
-        
-       
  
 
     def join(self, timeout=None):
