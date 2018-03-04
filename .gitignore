@@ -4,3 +4,5 @@ MusicPlayerGUI/MusicPlayerGUI/bin/Debug/MusicPlayerGUI.vshost.exe
 \.idea/
 
 Backend/mainScript/\.vscode/settings\.json
+
+Backend/\.vscode/
