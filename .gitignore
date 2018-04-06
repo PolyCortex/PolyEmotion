@@ -1,2 +1,4 @@
 *.suo
 MusicPlayerGUI/MusicPlayerGUI/bin/Debug/MusicPlayerGUI.vshost.exe
+
+Backend/\.idea/
