@@ -201,7 +201,7 @@ class Analyzer(Thread):
                     time.sleep(0.001)
                     continue
 
-                print 'Pipeline frequency = ' + str(round(self.actual_refresh_frequency, 2)) + ' Hz'
+                # print 'Pipeline frequency = ' + str(round(self.actual_refresh_frequency, 2)) + ' Hz'
 
                 time_start_window = datetime.now() - timedelta(milliseconds=self.window_duration) - timedelta(milliseconds=self.offset)
 
