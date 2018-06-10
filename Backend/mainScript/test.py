@@ -32,40 +32,40 @@ class PlotData:
     Ploting data with pyqtgraph under a class format
     """
     def __init__(self):
-        self.win = pg.GraphicsWindow()
-        self.win.setWindowTitle('....')
+        self._win = pg.GraphicsWindow()
+        self._win.setWindowTitle('....')
 
-        self.chunkSize = 100
-        self.maxChunks = 10
-        self.startTime = pg.ptime.time()
-        self.win.nextRow()
-        self.p5 = self.win.addPlot(colspan=2)
-        self.p5.setLabel('bottom', '...', '...')
-        self.p5.setXRange(-10, 0)
-        self.curves = []
-        self.data5 = np.empty((self.chunkSize + 1, 2))
-        self.ptr5 = 0
+        self._chunkSize = 100
+        self._maxChunks = 10
+        self._startTime = pg.ptime.time()
+        self._win.nextRow()
+        self._p = self._win.addPlot(colspan=2)
+        self._p.setLabel('bottom', '...', '...')
+        self._p.setXRange(-10, 0)
+        self._curves = []
+        self._data = np.empty((self._chunkSize + 1, 2))
+        self._ptr = 0
 
     def update(self):
         now = pg.ptime.time()
-        for c in self.curves:
-            c.setPos(-(now - self.startTime), 0)
+        for c in self._curves:
+            c.setPos(-(now - self._startTime), 0)
 
-        i = self.ptr5 % self.chunkSize
+        i = self._ptr % self._chunkSize
         if i == 0:
-            curve = self.p5.plot()
-            self.curves.append(curve)
-            last = self.data5[-1]
-            self.data5[0] = last
-            while len(self.curves) > self.maxChunks:
-                c = self.curves.pop(0)
-                self.p5.removeItem(c)
+            curve = self._p.plot()
+            self._curves.append(curve)
+            last = self._data[-1]
+            self._data[0] = last
+            while len(self._curves) > self._maxChunks:
+                c = self._curves.pop(0)
+                self._p.removeItem(c)
         else:
-            curve = self.curves[-1]
-        self.data5[i + 1, 0] = now - self.startTime
-        self.data5[i + 1, 1] = np.random.normal()
-        curve.setData(x=self.data5[:i + 2, 0], y=self.data5[:i + 2, 1])
-        self.ptr5 += 1
+            curve = self._curves[-1]
+        self._data[i + 1, 0] = now - self._startTime
+        self._data[i + 1, 1] = np.random.normal()
+        curve.setData(x=self._data[:i + 2, 0], y=self._data[:i + 2, 1])
+        self._ptr += 1
 
 
 p = PlotData()
